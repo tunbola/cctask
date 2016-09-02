@@ -1,0 +1,25 @@
+ <table ng-show="total_campaigns > '0'">
+        <tr class="columnheader">
+        <td>Title</td>
+        <td>Status</td>
+        <td>Contribution/Event Page</td>
+        <td>No of Donations</td>
+        <td>Amount Raised</td>
+        <td>Target Amount</td>
+        <td>Action</td>
+        </tr>
+        <tr ng-repeat="(key, value) in campaigns.values track by key" ng-class="{odd: $odd, even : $even}">
+            <td><a href="{{formUrlLink(value,'page_link')}}">{{value.title}}</a></td>
+            <td>{{pcp_status_types[value.status_id]}}</td>
+            <td><a href="{{formUrlLink(value,'contribution_page_link')}}">{{contribution_store[key]['contribution_page']}}</a></td>
+            <td><a href="{{formUrlLink(value,'contributors_link')}}">{{contribution_store[key]["count"]}}</a></td>
+            <td>{{calculateAmountRaised(key)}}</td>
+            <td>{{formatMoney(value.goal_amount)}}</td>
+            <td><a href="{{formUrlLink(value,'edit_link')}}">Edit</a></td>
+        </tr>
+</table>
+ <div ng-show="total_campaigns =='0'">
+     <div class="messages status no-popup">
+         <div class="icon inform-icon"></div>None found.</div>
+ </div>
+
